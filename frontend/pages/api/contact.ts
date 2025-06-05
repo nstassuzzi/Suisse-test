@@ -40,6 +40,8 @@ try {
   });
 
   console.log("✅ Transporter ready. Sending email...");
+  console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
+  console.log("SUPABASE_ANON_KEY:", process.env.SUPABASE_ANON_KEY);
 
   const info = await transporter.sendMail({
     from: `"Suisse Contact" <${process.env.SMTP_USER}>`,
