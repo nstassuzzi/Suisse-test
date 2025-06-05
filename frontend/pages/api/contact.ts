@@ -22,8 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { error: dbError } = await supabase
     .from('contact_messages')
     .insert([{ name, email, message }]);
-  console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
-  console.log("SUPABASE_ANON_KEY:", process.env.SUPABASE_ANON_KEY);
   if (dbError) {
     console.error('Supabase insert error:', dbError);
     return res.status(500).json({ message: 'Database error. Try again later.' });
