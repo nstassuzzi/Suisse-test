@@ -60,7 +60,7 @@ useEffect(() => {
                 About
               </a>
               <a
-                href="#contact"
+                href="/contact"
                 className="hover:text-navy transition-colors font-medium"
               >
                 Contact
@@ -345,7 +345,7 @@ useEffect(() => {
               <a href="#" className="hover:text-navy transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="hover:text-navy transition-colors">
+              <a href="/contact" className="hover:text-navy transition-colors">
                 Contact Us
               </a>
             </div>
