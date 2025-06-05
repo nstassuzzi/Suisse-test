@@ -21,7 +21,7 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="text-navy font-bold text-2xl tracking-tight">
-              Suisse <span className="font-light">Wealth</span>
+              Suisse <span className="font-light">Wealth Investment</span>
             </div>
             <div className="hidden md:flex space-x-8 text-gray-700">
               <a
@@ -49,9 +49,22 @@ const Index = () => {
                 Contact
               </a>
             </div>
-            <Button className="bg-navy hover:bg-navy-800 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300">
-              Get Started
-            </Button>
+            <div className="flex items-center space-x-4">
+              <a href="/login">
+                <Button
+                  variant="outline"
+                  className="text-gray-700 hover:text-navy px-4 py-2 rounded-lg font-medium transition-all duration-300"
+                >
+                  Log in
+                </Button>
+              </a>
+              <Button
+                className="bg-navy hover:bg-navy-800 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300"
+                onClick={() => (window.location.href = "/get-started")}
+              >
+                Get Started
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
@@ -79,13 +92,15 @@ const Index = () => {
             Education, automation, and AI to help you invest like the pros.
           </p>
 
-          <Button
-            size="lg"
-            className="bg-navy hover:bg-navy-800 text-white px-12 py-4 rounded-lg text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl group"
-          >
-            Start your journey
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <a href="/get-started">
+            <Button
+              size="lg"
+              className="bg-navy hover:bg-navy-800 text-white px-12 py-4 rounded-lg text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl group"
+            >
+              Start your journey
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
 
           <div className="mt-16 flex justify-center items-center gap-8 text-gray-500 text-sm">
             <div className="flex items-center gap-2">
@@ -227,12 +242,14 @@ const Index = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              size="lg"
-              className="bg-navy hover:bg-navy-800 text-white px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Sign up free
-            </Button>
+            <a href="/get-started">
+              <Button
+                size="lg"
+                className="bg-navy hover:bg-navy-800 text-white px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Sign up free
+              </Button>
+            </a>
             <Button
               size="lg"
               variant="outline"
