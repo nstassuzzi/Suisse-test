@@ -1,0 +1,46 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(() => {
+var exports = {};
+exports.id = "pages/api/contact";
+exports.ids = ["pages/api/contact"];
+exports.modules = {
+
+/***/ "nodemailer":
+/*!*****************************!*\
+  !*** external "nodemailer" ***!
+  \*****************************/
+/***/ ((module) => {
+
+module.exports = require("nodemailer");
+
+/***/ }),
+
+/***/ "(api)/./pages/api/contact.ts":
+/*!******************************!*\
+  !*** ./pages/api/contact.ts ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var nodemailer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nodemailer */ \"nodemailer\");\n/* harmony import */ var nodemailer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nodemailer__WEBPACK_IMPORTED_MODULE_0__);\nconsole.log(\"SMTP_HOST:\", process.env.SMTP_HOST);\nconsole.log(\"SMTP_PORT:\", process.env.SMTP_PORT);\nconsole.log(\"SMTP_USER:\", process.env.SMTP_USER);\nconsole.log(\"SMTP_PASS:\", process.env.SMTP_PASS ? \"defined\" : \"undefined\");\nconsole.log(\"CONTACT_RECEIVER_EMAIL:\", process.env.CONTACT_RECEIVER_EMAIL);\n\nasync function handler(req, res) {\n    if (req.method !== \"POST\") {\n        return res.status(405).json({\n            message: \"Method Not Allowed\"\n        });\n    }\n    const { name, email, message } = req.body;\n    if (!name || !email || !message) {\n        return res.status(400).json({\n            message: \"All fields are required.\"\n        });\n    }\n    try {\n        // Configure the email transporter\n        const transporter = nodemailer__WEBPACK_IMPORTED_MODULE_0___default().createTransport({\n            host: process.env.SMTP_HOST,\n            port: Number(process.env.SMTP_PORT) || 587,\n            secure: false,\n            auth: {\n                user: process.env.SMTP_USER,\n                pass: process.env.SMTP_PASS\n            }\n        });\n        await transporter.verify();\n        // Send the email\n        await transporter.sendMail({\n            from: `Suisse Contact Form <${process.env.SMTP_USER}>`,\n            to: process.env.CONTACT_RECEIVER_EMAIL,\n            subject: `New Contact Form Submission from ${name}`,\n            text: `Name: ${name}\\nEmail: ${email}\\nMessage:\\n${message}`,\n            html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong><br>${message.replace(/\\n/g, \"<br>\")}</p>`\n        });\n        return res.status(200).json({\n            message: \"Message sent successfully!\"\n        });\n    } catch (error) {\n        console.error(\"Error sending email:\", error);\n        return res.status(500).json({\n            message: \"Failed to send message. Please try again later.\"\n        });\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvY29udGFjdC50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQUEsUUFBUUMsR0FBRyxDQUFDLGNBQWNDLFFBQVFDLEdBQUcsQ0FBQ0MsU0FBUztBQUMvQ0osUUFBUUMsR0FBRyxDQUFDLGNBQWNDLFFBQVFDLEdBQUcsQ0FBQ0UsU0FBUztBQUMvQ0wsUUFBUUMsR0FBRyxDQUFDLGNBQWNDLFFBQVFDLEdBQUcsQ0FBQ0csU0FBUztBQUMvQ04sUUFBUUMsR0FBRyxDQUFDLGNBQWNDLFFBQVFDLEdBQUcsQ0FBQ0ksU0FBUyxHQUFHLFlBQVk7QUFDOURQLFFBQVFDLEdBQUcsQ0FBQywyQkFBMkJDLFFBQVFDLEdBQUcsQ0FBQ0ssc0JBQXNCO0FBR3JDO0FBRXJCLGVBQWVFLFFBQVFDLEdBQW1CLEVBQUVDLEdBQW9CO0lBQzdFLElBQUlELElBQUlFLE1BQU0sS0FBSyxRQUFRO1FBQ3pCLE9BQU9ELElBQUlFLE1BQU0sQ0FBQyxLQUFLQyxJQUFJLENBQUM7WUFBRUMsU0FBUztRQUFxQjtJQUM5RDtJQUVBLE1BQU0sRUFBRUMsSUFBSSxFQUFFQyxLQUFLLEVBQUVGLE9BQU8sRUFBRSxHQUFHTCxJQUFJUSxJQUFJO0lBRXpDLElBQUksQ0FBQ0YsUUFBUSxDQUFDQyxTQUFTLENBQUNGLFNBQVM7UUFDL0IsT0FBT0osSUFBSUUsTUFBTSxDQUFDLEtBQUtDLElBQUksQ0FBQztZQUFFQyxTQUFTO1FBQTJCO0lBQ3BFO0lBRUEsSUFBSTtRQUNGLGtDQUFrQztRQUNsQyxNQUFNSSxjQUFjWCxpRUFBMEIsQ0FBQztZQUM3Q2EsTUFBTXBCLFFBQVFDLEdBQUcsQ0FBQ0MsU0FBUztZQUMzQm1CLE1BQU1DLE9BQU90QixRQUFRQyxHQUFHLENBQUNFLFNBQVMsS0FBSztZQUN2Q29CLFFBQVE7WUFDUkMsTUFBTTtnQkFDSkMsTUFBTXpCLFFBQVFDLEdBQUcsQ0FBQ0csU0FBUztnQkFDM0JzQixNQUFNMUIsUUFBUUMsR0FBRyxDQUFDSSxTQUFTO1lBQzdCO1FBQ0Y7UUFDQSxNQUFNYSxZQUFZUyxNQUFNO1FBRXhCLGlCQUFpQjtRQUNqQixNQUFNVCxZQUFZVSxRQUFRLENBQUM7WUFDekJDLE1BQU0sQ0FBQyxxQkFBcUIsRUFBRTdCLFFBQVFDLEdBQUcsQ0FBQ0csU0FBUyxDQUFDLENBQUMsQ0FBQztZQUN0RDBCLElBQUk5QixRQUFRQyxHQUFHLENBQUNLLHNCQUFzQjtZQUN0Q3lCLFNBQVMsQ0FBQyxpQ0FBaUMsRUFBRWhCLEtBQUssQ0FBQztZQUNuRGlCLE1BQU0sQ0FBQyxNQUFNLEVBQUVqQixLQUFLLFNBQVMsRUFBRUMsTUFBTSxZQUFZLEVBQUVGLFFBQVEsQ0FBQztZQUM1RG1CLE1BQU0sQ0FBQywwQkFBMEIsRUFBRWxCLEtBQUssK0JBQStCLEVBQUVDLE1BQU0sb0NBQW9DLEVBQUVGLFFBQVFvQixPQUFPLENBQUMsT0FBTyxRQUFRLElBQUksQ0FBQztRQUMzSjtRQUVBLE9BQU94QixJQUFJRSxNQUFNLENBQUMsS0FBS0MsSUFBSSxDQUFDO1lBQUVDLFNBQVM7UUFBNkI7SUFDdEUsRUFBRSxPQUFPcUIsT0FBTztRQUNkckMsUUFBUXFDLEtBQUssQ0FBQyx3QkFBd0JBO1FBQ3RDLE9BQU96QixJQUFJRSxNQUFNLENBQUMsS0FBS0MsSUFBSSxDQUFDO1lBQUVDLFNBQVM7UUFBa0Q7SUFDM0Y7QUFDRiIsInNvdXJjZXMiOlsid2VicGFjazovL3N1aXNzZS13ZWFsdGgtaG9tZXBhZ2UvLi9wYWdlcy9hcGkvY29udGFjdC50cz9mNmYzIl0sInNvdXJjZXNDb250ZW50IjpbImNvbnNvbGUubG9nKFwiU01UUF9IT1NUOlwiLCBwcm9jZXNzLmVudi5TTVRQX0hPU1QpO1xuY29uc29sZS5sb2coXCJTTVRQX1BPUlQ6XCIsIHByb2Nlc3MuZW52LlNNVFBfUE9SVCk7XG5jb25zb2xlLmxvZyhcIlNNVFBfVVNFUjpcIiwgcHJvY2Vzcy5lbnYuU01UUF9VU0VSKTtcbmNvbnNvbGUubG9nKFwiU01UUF9QQVNTOlwiLCBwcm9jZXNzLmVudi5TTVRQX1BBU1MgPyBcImRlZmluZWRcIiA6IFwidW5kZWZpbmVkXCIpO1xuY29uc29sZS5sb2coXCJDT05UQUNUX1JFQ0VJVkVSX0VNQUlMOlwiLCBwcm9jZXNzLmVudi5DT05UQUNUX1JFQ0VJVkVSX0VNQUlMKTtcblxuaW1wb3J0IHR5cGUgeyBOZXh0QXBpUmVxdWVzdCwgTmV4dEFwaVJlc3BvbnNlIH0gZnJvbSAnbmV4dCc7XG5pbXBvcnQgbm9kZW1haWxlciBmcm9tICdub2RlbWFpbGVyJztcblxuZXhwb3J0IGRlZmF1bHQgYXN5bmMgZnVuY3Rpb24gaGFuZGxlcihyZXE6IE5leHRBcGlSZXF1ZXN0LCByZXM6IE5leHRBcGlSZXNwb25zZSkge1xuICBpZiAocmVxLm1ldGhvZCAhPT0gJ1BPU1QnKSB7XG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoNDA1KS5qc29uKHsgbWVzc2FnZTogJ01ldGhvZCBOb3QgQWxsb3dlZCcgfSk7XG4gIH1cblxuICBjb25zdCB7IG5hbWUsIGVtYWlsLCBtZXNzYWdlIH0gPSByZXEuYm9keTtcblxuICBpZiAoIW5hbWUgfHwgIWVtYWlsIHx8ICFtZXNzYWdlKSB7XG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5qc29uKHsgbWVzc2FnZTogJ0FsbCBmaWVsZHMgYXJlIHJlcXVpcmVkLicgfSk7XG4gIH1cblxuICB0cnkge1xuICAgIC8vIENvbmZpZ3VyZSB0aGUgZW1haWwgdHJhbnNwb3J0ZXJcbiAgICBjb25zdCB0cmFuc3BvcnRlciA9IG5vZGVtYWlsZXIuY3JlYXRlVHJhbnNwb3J0KHtcbiAgICAgIGhvc3Q6IHByb2Nlc3MuZW52LlNNVFBfSE9TVCxcbiAgICAgIHBvcnQ6IE51bWJlcihwcm9jZXNzLmVudi5TTVRQX1BPUlQpIHx8IDU4NyxcbiAgICAgIHNlY3VyZTogZmFsc2UsIC8vIHRydWUgZm9yIDQ2NSwgZmFsc2UgZm9yIG90aGVyIHBvcnRzXG4gICAgICBhdXRoOiB7XG4gICAgICAgIHVzZXI6IHByb2Nlc3MuZW52LlNNVFBfVVNFUixcbiAgICAgICAgcGFzczogcHJvY2Vzcy5lbnYuU01UUF9QQVNTLFxuICAgICAgfSxcbiAgICB9KTtcbiAgICBhd2FpdCB0cmFuc3BvcnRlci52ZXJpZnkoKTtcblxuICAgIC8vIFNlbmQgdGhlIGVtYWlsXG4gICAgYXdhaXQgdHJhbnNwb3J0ZXIuc2VuZE1haWwoe1xuICAgICAgZnJvbTogYFN1aXNzZSBDb250YWN0IEZvcm0gPCR7cHJvY2Vzcy5lbnYuU01UUF9VU0VSfT5gLFxuICAgICAgdG86IHByb2Nlc3MuZW52LkNPTlRBQ1RfUkVDRUlWRVJfRU1BSUwsXG4gICAgICBzdWJqZWN0OiBgTmV3IENvbnRhY3QgRm9ybSBTdWJtaXNzaW9uIGZyb20gJHtuYW1lfWAsXG4gICAgICB0ZXh0OiBgTmFtZTogJHtuYW1lfVxcbkVtYWlsOiAke2VtYWlsfVxcbk1lc3NhZ2U6XFxuJHttZXNzYWdlfWAsXG4gICAgICBodG1sOiBgPHA+PHN0cm9uZz5OYW1lOjwvc3Ryb25nPiAke25hbWV9PC9wPjxwPjxzdHJvbmc+RW1haWw6PC9zdHJvbmc+ICR7ZW1haWx9PC9wPjxwPjxzdHJvbmc+TWVzc2FnZTo8L3N0cm9uZz48YnI+JHttZXNzYWdlLnJlcGxhY2UoL1xcbi9nLCAnPGJyPicpfTwvcD5gLFxuICAgIH0pO1xuXG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsgbWVzc2FnZTogJ01lc3NhZ2Ugc2VudCBzdWNjZXNzZnVsbHkhJyB9KTtcbiAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICBjb25zb2xlLmVycm9yKCdFcnJvciBzZW5kaW5nIGVtYWlsOicsIGVycm9yKTtcbiAgICByZXR1cm4gcmVzLnN0YXR1cyg1MDApLmpzb24oeyBtZXNzYWdlOiAnRmFpbGVkIHRvIHNlbmQgbWVzc2FnZS4gUGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4nIH0pO1xuICB9XG59XG4iXSwibmFtZXMiOlsiY29uc29sZSIsImxvZyIsInByb2Nlc3MiLCJlbnYiLCJTTVRQX0hPU1QiLCJTTVRQX1BPUlQiLCJTTVRQX1VTRVIiLCJTTVRQX1BBU1MiLCJDT05UQUNUX1JFQ0VJVkVSX0VNQUlMIiwibm9kZW1haWxlciIsImhhbmRsZXIiLCJyZXEiLCJyZXMiLCJtZXRob2QiLCJzdGF0dXMiLCJqc29uIiwibWVzc2FnZSIsIm5hbWUiLCJlbWFpbCIsImJvZHkiLCJ0cmFuc3BvcnRlciIsImNyZWF0ZVRyYW5zcG9ydCIsImhvc3QiLCJwb3J0IiwiTnVtYmVyIiwic2VjdXJlIiwiYXV0aCIsInVzZXIiLCJwYXNzIiwidmVyaWZ5Iiwic2VuZE1haWwiLCJmcm9tIiwidG8iLCJzdWJqZWN0IiwidGV4dCIsImh0bWwiLCJyZXBsYWNlIiwiZXJyb3IiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api)/./pages/api/contact.ts\n");
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../webpack-api-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/contact.ts"));
+module.exports = __webpack_exports__;
+
+})();
