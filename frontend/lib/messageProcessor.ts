@@ -1,5 +1,12 @@
 // File: /lib/messageProcessor.ts
 
+export interface ContactPayload {
+  name: string;
+  email: string;
+  message: string;
+  source_page: string | null;
+}
+
 export function getCategory(message: string): string {
   const lower = message.toLowerCase();
   if (lower.includes("inversión") || lower.includes("comprar")) return "Inversión";

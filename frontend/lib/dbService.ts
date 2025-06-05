@@ -1,17 +1,9 @@
 import { supabase } from "@/lib/supabase";
-import { getCategory, getPriority, getTags } from "@/lib/messageProcessor";
+import { ContactPayload, getCategory, getPriority, getTags } from "@/lib/messageProcessor";
 
-export async function saveContactMessage({
-  name,
-  email,
-  message,
-  source_page,
-}: {
-  name: string;
-  email: string;
-  message: string;
-  source_page: string | null;
-}) {
+export async function saveContactMessage(payload: ContactPayload) {
+  const { name, email, message, source_page } = payload;
+
   const category = getCategory(message);
   const priority = getPriority(message);
   const tags = getTags(message);
@@ -21,11 +13,12 @@ export async function saveContactMessage({
       name,
       email,
       message,
+      source_page,
       category,
       priority,
       tags,
     },
   ]);
 
-  if (error) throw new Error(error.message);
+  if (error) throw new Error(`Supabase insert error: ${error.message}`);
 }
