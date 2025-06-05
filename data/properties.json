@@ -1,14 +1,20 @@
 [
   {
-    "title": "Departamento en Aldea Zama",
+    "title": "Penthouse en Aldea Zama",
     "image": "/img/aldea.jpg",
-    "price": "$210,000 USD",
+    "price": "$220,000 USD",
     "location": "Tulum, Quintana Roo"
   },
   {
-    "title": "Loft con vista a la selva",
+    "title": "Loft minimalista en Región 15",
     "image": "/img/selva.jpg",
-    "price": "$180,000 USD",
-    "location": "Tulum - Región 15"
+    "price": "$175,000 USD",
+    "location": "Tulum, Región 15"
+  },
+  {
+    "title": "Estudio amueblado cerca del mar",
+    "image": "/img/playa.jpg",
+    "price": "$145,000 USD",
+    "location": "Tulum Centro"
   }
 ]

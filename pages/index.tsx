@@ -12,6 +12,7 @@ import {
   Users,
   Star,
 } from "lucide-react";
+import properties from '../data/properties.json';
 
 const Index = () => {
   return (
