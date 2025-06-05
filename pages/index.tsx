@@ -289,7 +289,7 @@ const Index = () => {
               </a>
             </div>
             <div className="mt-8 pt-8 border-t border-gray-100 text-gray-400 text-sm">
-              © 2024 Suisse Wealth Management. All rights reserved.
+              © 2025 Suisse Wealth Management. All rights reserved.
             </div>
           </div>
         </div>

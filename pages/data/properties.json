@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Departamento en Aldea Zama",
+    "image": "/img/aldea.jpg",
+    "price": "$210,000 USD",
+    "location": "Tulum, Quintana Roo"
+  },
+  {
+    "title": "Loft con vista a la selva",
+    "image": "/img/selva.jpg",
+    "price": "$180,000 USD",
+    "location": "Tulum - Región 15"
+  }
+]
