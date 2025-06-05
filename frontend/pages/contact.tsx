@@ -121,13 +121,15 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
-        setTouched({});
-        setErrors({});
-      } else {
-        throw new Error("Failed to send message");
-      }
+      const result = await response.json();
+      console.log("✅ Email enviado:", result.messageId);
+      setIsSubmitted(true);
+  // limpiar formulario...
+    } else {
+      const error = await response.json();
+      console.error("❌ Error del servidor:", error.message || error.error);
+      alert("El mensaje no pudo enviarse: " + (error.message || "Error desconocido"));
+    }
     } catch (error) {
       console.error("Error sending message:", error);
       // For demo purposes, we'll show success anyway
