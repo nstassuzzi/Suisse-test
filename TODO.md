@@ -12,5 +12,5 @@
 
 ## 🧠 Ideas futuras
 - Integrar chatbot personalizado
-- Automatizar envío de datos a base externa
-- Recomendaciones inteligentes de inversión
+- Automatizar envio de datos a base externa
+- Recomendaciones inteligentes de inversion
