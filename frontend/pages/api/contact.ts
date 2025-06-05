@@ -1,5 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -11,7 +17,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!name || !email || !message) {
     return res.status(400).json({ message: 'All fields are required.' });
   }
+  // Save contact form to Supabase
+  const { error: dbError } = await supabase
+    .from('contact_messages')
+    .insert([{ name, email, message }]);
 
+  if (dbError) {
+    console.error('Supabase insert error:', dbError);
+    return res.status(500).json({ message: 'Database error. Try again later.' });
+  }
+  
 try {
   console.log("📤 Connecting to SMTP transporter...");
   const transporter = nodemailer.createTransport({
