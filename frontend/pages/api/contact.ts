@@ -17,11 +17,49 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!name || !email || !message) {
     return res.status(400).json({ message: 'All fields are required.' });
   }
-  // Save contact form to Supabase
+// 1. Categorizar automáticamente
+function getCategory(message: string): string {
+  const lowered = message.toLowerCase();
+  if (lowered.includes('invertir') || lowered.includes('rentabilidad')) return 'Inversión';
+  if (lowered.includes('problema') || lowered.includes('error')) return 'Soporte';
+  if (lowered.includes('demo') || lowered.includes('presentación')) return 'Demo';
+  return 'General';
+}
 
-  const { error: dbError } = await supabase
-    .from('contact_messages')
-    .insert([{ name, email, message }]);
+// 2. Priorizar automáticamente
+function getPriority(message: string): string {
+  const lowered = message.toLowerCase();
+  if (lowered.includes('urgente') || lowered.includes('ahora')) return 'Alto';
+  if (lowered.includes('cuando puedan') || lowered.includes('más tarde')) return 'Bajo';
+  return 'Medio';
+}
+
+// 3. Etiquetar automáticamente
+function getTags(message: string): string[] {
+  const tags: string[] = [];
+  const lowered = message.toLowerCase();
+  if (lowered.includes('tulum')) tags.push('Tulum');
+  if (lowered.includes('usdt') || lowered.includes('crypto')) tags.push('Crypto');
+  if (lowered.includes('educación')) tags.push('Educación');
+  if (lowered.includes('dólar')) tags.push('Dólar');
+  return tags;
+}
+// Save contact form to Supabase
+  const category = getCategory(message);
+const priority = getPriority(message);
+const tags = getTags(message);
+
+const { error: dbError } = await supabase
+  .from('contact_messages')
+  .insert([{
+    name,
+    email,
+    message,
+    source_page: req.headers.referer || null, 
+    category,
+    priority,
+    tags,
+  }]);
   if (dbError) {
     console.error('Supabase insert error:', dbError);
     return res.status(500).json({ message: 'Database error. Try again later.' });
