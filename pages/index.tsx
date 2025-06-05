@@ -13,6 +13,7 @@ import {
   Star,
 } from "lucide-react";
 import properties from '../data/properties.json';
+import PropertyCard from "@/components/PropertyCard";
 
 const Index = () => {
   return (
@@ -266,7 +267,31 @@ const Index = () => {
           </p>
         </div>
       </section>
+          {/* Properties Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-light text-navy mb-6">
+              Featured <span className="font-normal">Properties</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Explore exclusive real estate opportunities selected for modern investors.
+            </p>
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {properties.map((property, index) => (
+              <PropertyCard
+                key={index}
+                title={property.title}
+                image={property.image}
+                price={property.price}
+                location={property.location}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
       {/* Footer */}
       <footer className="bg-white py-12 border-t border-gray-100">
         <div className="container mx-auto px-6">
