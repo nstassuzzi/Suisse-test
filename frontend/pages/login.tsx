@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button } from "@/frontend/components/ui/button";
-import { Card, CardContent } from "@/frontend/components/ui/card";
-import { Badge } from "@/frontend/components/ui/badge";
-import { Input } from "@/frontend/components/ui/input";
-import { Label } from "@/frontend/components/ui/label";
-import { Separator } from "@/frontend/components/ui/separator";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Separator } from "../components/ui/separator";
 import { Eye, EyeOff, ArrowRight, Shield, Lock } from "lucide-react";
 
 const Login = () => {

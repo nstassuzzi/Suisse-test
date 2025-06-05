@@ -120,14 +120,15 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+     if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
         setTouched({});
         setErrors({});
-      } else {
-        throw new Error("Failed to send message");
-      }
+        } else {
+        const errorData = await response.json();
+        alert(errorData.message || "Something went wrong. Please try again later.");
+        }
     } catch (error) {
       console.error("Error sending message:", error);
       // For demo purposes, we'll show success anyway
@@ -394,6 +395,7 @@ const Contact = () => {
                         id="message"
                         placeholder="Tell us about your investment goals, questions, or how we can help you..."
                         rows={6}
+                        maxLength={500}
                         value={formData.message}
                         onChange={(e) =>
                           handleInputChange("message", e.target.value)
