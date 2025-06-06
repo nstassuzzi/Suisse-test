@@ -448,8 +448,6 @@ const Contact = () => {
                         </>
                       )}
                     </Button>
-                    <InlineWidget url="https://calendly.com/stnico95" />
-
                     <p className="text-sm text-gray-500 text-center">
                       By submitting this form, you agree to our Privacy Policy
                       and Terms of Service.
