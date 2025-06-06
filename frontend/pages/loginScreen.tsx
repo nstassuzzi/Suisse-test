@@ -201,7 +201,7 @@ const Login = () => {
                 {/* Register Link */}
                 <div className="text-center">
                   <p className="text-gray-600 mb-4">Don't have an account?</p>
-                  <a href="/signup">
+                  <a href="/signUp">
                     <Button
                       type="button"
                       variant="outline"
