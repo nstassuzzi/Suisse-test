@@ -6,6 +6,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Separator } from "../components/ui/separator";
 import { Eye, EyeOff, ArrowRight, Shield, Lock } from "lucide-react";
+import { supabase } from "../lib/supabaseClient";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,17 +20,46 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    // Simulate login process
-    setTimeout(() => {
-      setIsLoading(false);
-      // Handle login logic here
-      console.log("Login attempt:", formData);
-    }, 2000);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
 
+  // 1. Iniciar sesión con Supabase
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password,
+  });
+
+  if (error) {
+    setIsLoading(false);
+    alert("Login failed: " + error.message);
+    return;
+  }
+
+  // 2. Obtener el usuario autenticado
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // 3. Consultar el rol desde la tabla `profiles`
+  const { data: profile, error: roleError } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single();
+
+  setIsLoading(false);
+
+  if (roleError || !profile) {
+    alert("No se pudo obtener el rol del usuario.");
+    return;
+  }
+
+  // 4. Redireccionar según el rol
+  if (profile.role === 'admin') {
+    window.location.href = '/admin-dashboard';
+  } else {
+    window.location.href = '/dashboard';
+  }
+};
   const isFormValid = formData.email && formData.password;
 
   return (
@@ -127,7 +157,7 @@ const Login = () => {
                 {/* Forgot Password Link */}
                 <div className="text-right">
                   <a
-                    href="/forgot-password"
+                    href="/forgotPassword"
                     className="text-sm text-navy hover:text-navy-800 transition-colors font-medium"
                   >
                     Forgot your password?
@@ -171,7 +201,7 @@ const Login = () => {
                 {/* Register Link */}
                 <div className="text-center">
                   <p className="text-gray-600 mb-4">Don't have an account?</p>
-                  <a href="/register">
+                  <a href="/signup">
                     <Button
                       type="button"
                       variant="outline"
