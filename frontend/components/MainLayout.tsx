@@ -8,7 +8,7 @@ export default function MainLayout({ children, role }: { children: React.ReactNo
         <h1 className="text-xl font-bold">Suisse</h1>
         <nav className="space-x-4 text-sm">
           <Link href="/dashboard" className="hover:underline">Inicio</Link>
-          {role === "admin" && <Link href="/admin-dashboard" className="hover:underline">Admin</Link>}
+          {role === "admin" && <Link href="/adminDashboard" className="hover:underline">Admin</Link>}
           <Link href="/profile" className="hover:underline">Perfil</Link>
           <button
             onClick={async () => {

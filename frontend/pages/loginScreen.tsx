@@ -55,7 +55,7 @@ const Login = () => {
 
   // 4. Redireccionar según el rol
   if (profile.role === 'admin') {
-    window.location.href = '/admin-dashboard';
+    window.location.href = '/adminDashboard';
   } else {
     window.location.href = '/dashboard';
   }

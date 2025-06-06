@@ -16,6 +16,7 @@ import {
   Clock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { InlineWidget } from "react-calendly";
 
 interface FormData {
   name: string;
@@ -447,12 +448,20 @@ const Contact = () => {
                         </>
                       )}
                     </Button>
+                    <InlineWidget url="https://calendly.com/stnico95" />
 
                     <p className="text-sm text-gray-500 text-center">
                       By submitting this form, you agree to our Privacy Policy
                       and Terms of Service.
                     </p>
                   </form>
+                  <div className="mt-12">
+                  <h3 className="text-xl font-semibold text-navy mb-4">¿Preferís una cita directa?</h3>
+                  <InlineWidget
+                    url="https://calendly.com/stnico95"
+                    styles={{ height: "600px" }}
+                  />
+                </div>
                 </CardContent>
               </Card>
             </div>
